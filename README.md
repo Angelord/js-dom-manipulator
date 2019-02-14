@@ -1,7 +1,7 @@
-## Event Organizer
+## DOM library
 
 ### About
-A simple javascript application for organizing entertainment events. 
+A simple javascript library for dom manipulation.
 
 ### How to Run
 Simply open index.html with your browser.
