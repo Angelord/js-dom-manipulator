@@ -5,6 +5,10 @@ var exdom = function(pattern) {
     return new ExdomElement( [ document ] ).children();
 };
 
+var createElement = function() {
+
+}
+
 function ExdomElement(elements) {
 
     var elementsRef = elements ? elements : [ ];
@@ -51,6 +55,22 @@ function ExdomElement(elements) {
         });
 
         return new ExdomElement(filtered);
+    }
+
+    this.append = function(text) {
+        if(!text) { return; }
+
+        elementsRef.forEach(element => {
+            element.innerHTML += text;
+        });
+    }
+
+    this.prepend = function(text) {
+        if(!text) { return; }
+
+        elementsRef.forEach(element => {
+            element.innerHTML = text + element.innerHTML;
+        }); 
     }
 
     this.remove = function() {
