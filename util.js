@@ -87,3 +87,9 @@ var HtmlUtil = {
         return element;
     }
 };
+
+Array.prototype.pushArray = function(array) {
+    for(var i = 0; i < array.length; i++) {
+        this.push(array[i]);
+    }
+}
