@@ -3,44 +3,15 @@ var exdom = function(pattern) {
 
     var all = document.getElementsByTagName("*");
     return new ExdomElement( [ document ] );
-    
-    return get(pattern);
-
-    function get(pattern) {
-        var patternRef = pattern ? pattern.trim() : "*";
-
-        if(patternRef == "*") {
-            return all();
-        }
-
-        if(patternRef[0] == "#") {
-            var elId = patternRef.substring(1);
-            return id(elId);
-        }
-
-        if(substring.contains(".")) {
-
-        }
-    }
-
-    function all() {
-        var all = document.getElementsByTagName("*");
-        return new ExdomElement(all);
-    };
-
-    function id(elId) {
-        var elWithId = document.getElementById(id);
-        return new ExdomElement( [elWithId] );
-    } 
-
-    function getByClassName() {
-
-    }
 };
 
 function ExdomElement(elements) {
 
     var elementsRef = elements ? elements : [ ];
+
+    this.exists = function() {
+        return elementsRef.length != 0;
+    }
 
     this.all = function() {
         var allElements = [];
@@ -59,11 +30,20 @@ function ExdomElement(elements) {
                 return new ExdomElement( [element] );
             }
         }
+        return new ExdomElement();
     }
 
-    this.setClass = function(name) {
+    this.remove = function() {
+        elementsRef.forEach(element => {
+            if(element.parentNode) {
+                element.parentNode.removeChild(element);
+            }
+        });
+    }
+
+    this.setClass = function(className) {
         CollectionUtil.forEach(elementsRef, function(element) {
-            element.className = name;
+            element.className = className;
         });
 
         return this;
