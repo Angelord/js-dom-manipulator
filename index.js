@@ -3,9 +3,7 @@
 
 
 
-// exdom().all().setClass("nipples");
-// exdom().id("test").all().setClass("other");
-// exdom().id("test").all().remove();
-exdom().all().remove(); //Wipe the file
-
-// exdom("#test").setClass("nice");
+// exdom().remove(); //Wipe the file
+// exdom().tag("p").setClass("mainParagraph"); 
+exdom().id("test").setClass("specialDiv");
+exdom().tag("p").class("specialPar").setClass("notSpecialPar");

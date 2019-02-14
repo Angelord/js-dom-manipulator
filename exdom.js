@@ -2,7 +2,7 @@
 var exdom = function(pattern) {
 
     var all = document.getElementsByTagName("*");
-    return new ExdomElement( [ document ] );
+    return new ExdomElement( [ document ] ).children();
 };
 
 function ExdomElement(elements) {
@@ -13,7 +13,7 @@ function ExdomElement(elements) {
         return elementsRef.length != 0;
     }
 
-    this.all = function() {
+    this.children = function() {
         var allElements = [];
 
         CollectionUtil.forEach(elementsRef, function(element) {
@@ -24,13 +24,33 @@ function ExdomElement(elements) {
     }
 
     this.id = function(idName) {
-        for(var i = 0; i < elementsRef.length; i++) {
-            var element = elementsRef[i].getElementById(idName);
-            if(element) {
-                return new ExdomElement( [element] );
-            }
-        }
-        return new ExdomElement();
+        var filtered = CollectionUtil.filter(elementsRef, (element) => {
+            return element.id == idName;
+        });
+
+        return new ExdomElement(filtered);
+    }
+
+    this.tag = function(tagName) {
+        if(!tagName) { return this; }
+
+        var tagNameRef = tagName.toUpperCase();
+
+        var filtered = CollectionUtil.filter(elementsRef, (element) => {
+            return element.tagName == tagNameRef;
+        });
+
+        return new ExdomElement(filtered);
+    }
+
+    this.class = function(className) {
+        if(!className) { return this; }
+
+        var filtered = CollectionUtil.filter(elementsRef, (element) => {
+            return element.className == className;
+        });
+
+        return new ExdomElement(filtered);
     }
 
     this.remove = function() {
@@ -42,10 +62,10 @@ function ExdomElement(elements) {
     }
 
     this.setClass = function(className) {
-        CollectionUtil.forEach(elementsRef, function(element) {
+        elementsRef.forEach(element => {
             element.className = className;
         });
-
+        
         return this;
     }
 }
