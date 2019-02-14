@@ -32,3 +32,8 @@
 // exdom().remove();                            //Remove all elements
 // exdom().tag("p").class("special").remove();  //Remove paragraphs with class 'special'
 // exdom().id("someId").remove();               //Remove element with id 'someId'  
+
+
+//EVENTS
+// exdom().id("eventTester").click(function() { console.log("click"); });                          //click event
+// exdom().id("eventTester").addEventListener( "drag", function() { console.log("Drag"); });       //custom event
