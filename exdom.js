@@ -190,24 +190,25 @@ function ExdomElement(elements) {
         return this;
     }
 
-    this.mouseEnter = function(callback) { return addEventListener("mouseenter", callback); }
+    this.mouseEnter = function(callback) { return this.addEventListener("mouseenter", callback); }
 
-    this.mouseLeave = function(callback) { return addEventListener("mouseleave", callback); }
+    this.mouseLeave = function(callback) { return this.addEventListener("mouseleave", callback); }
 
-    this.mouseDown = function(callback) { return addEventListener("onmousedown", callback); }
+    this.mouseDown = function(callback) { return this.addEventListener("mousedown", callback); }
 
-    this.mouseUp = function(callback) { return addEventListener("onmouseup", callback); }
+    this.mouseUp = function(callback) { return this.addEventListener("mouseup", callback); }
 
-    this.click = function(callback) { return addEventListener("click", callback); }
+    this.click = function(callback) { return this.addEventListener("click", callback); }
 
-    this.drag = function(callback) { return addEventListener("drag", callback ); }
+    this.drag = function(callback) { return this.addEventListener("drag", callback ); }
 
     this.addEventListener = function(event, callback) {
         if(!event || !callback) { return; }
-        console.log("adding listener");
 
-        elementsRef.forEach(element => {
-            element.addEventListener(event, callback);
+        window.addEventListener('load',function(){
+            elementsRef.forEach(element => {
+                element.addEventListener(event, callback);
+            });
         });
 
         return this;

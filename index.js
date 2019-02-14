@@ -35,5 +35,6 @@
 
 
 //EVENTS
-// exdom().id("eventTester").click(function() { console.log("click"); });                          //click event
-// exdom().id("eventTester").addEventListener( "drag", function() { console.log("Drag"); });       //custom event
+// exdom().id("eventTester").click( function() { console.log("Clicking"); });                                  //Click event
+// exdom().id("eventTester").mouseEnter( function() { console.log("Mouse Enter"); });                          //Mouse enter event
+// exdom().id("eventTester").addEventListener( "mouseleave", function() { console.log("Mouse Leave"); });      //custom event
