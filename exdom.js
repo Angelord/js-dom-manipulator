@@ -81,6 +81,14 @@ function ExdomElement(elements) {
         });
     }
 
+    this.setId = function(idName) {
+        elementsRef.forEach(element => {
+            element.id = idName;
+        });
+
+        return this;
+    }
+
     this.setClass = function(className) {
         elementsRef.forEach(element => {
             element.className = className;
