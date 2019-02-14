@@ -1,0 +1,113 @@
+
+* {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+div.options .option_menu {
+    float: left;
+    clear: right;
+    border: 1px solid gray;
+    width: 28%;
+    height: 200px;
+    padding: 0% 1.5% 0% 1.5%;
+    margin: 0% 0.8% 2.0% 0.8%;
+    text-align: left;
+}
+
+div.options label {
+    width: 100px;;
+    clear: both;
+    text-align: left;
+}
+
+div.options input, label {
+    float: left;
+}
+
+div.options input.submit_btn {
+    width: 80%;
+    position: relative;
+    margin: 5% 10% 0% 10%;
+}
+
+div.table h3 {
+    color: black;
+    text-align: center;
+    height: 100%;
+    line-height: 30px;
+    padding: 0px;
+    margin: 0px 0px 0px 15px;
+    display: inline-block;
+}
+
+div.table div.inner_row {
+    margin: 0% 0% 0% 12%;
+    width: 88%;
+    height: 30px;
+    clear: left;
+    display: inline-block;
+    border: 1px solid lightgray;
+}
+
+div.table div.row:first-child {
+    background-color: lightgray;
+}
+
+div.table div.row {
+    padding: 0px;
+    margin: 0% 0% 0% 2%;
+    width: 92%;
+    height: 30px;
+    clear: left;
+    display: inline-block;
+    border: 1px solid lightgray;
+}
+
+div.row div.col {
+    font-family: 'Courier New', Courier, monospace;
+    width: 12%;
+    height: 100%;
+    float: left;
+    text-align: left;
+    line-height: 30px;
+}
+
+div.row div.col_btn {
+    font-family: 'Courier New', Courier, monospace;
+    height: 100%;
+    width: 90px;
+    float: right;
+}
+
+div.row div.col:nth-child(2) {
+    width: 30%;
+}
+
+div.row div.col:nth-child(1) {
+    width: 5%;
+    text-align: center;
+}
+
+.col_btn button {
+    border: 1px solid gray;
+    margin: 0;
+    padding: 0;
+    height: 92%;
+    width: 92%;
+    background-color: whitesmoke;
+}
+
+.col_btn button:hover {
+    background-color: gray;
+}
+
+div.row:hover {
+    background-color: lightgray;
+}
+
+div.inner_row:hover {
+    background-color: lightgray;
+}
+
+
+
