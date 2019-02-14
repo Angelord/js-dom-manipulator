@@ -11,3 +11,6 @@ exdom().tag("p").class("specialPar").setClass("notSpecialPar");
 exdom().id("test").setId("newId");
 exdom().id("newId").prepend("<p>Prepended paragraph</p>");
 exdom().id("newId").append("<p>Appended paragraph</p>");
+
+// console.log(exdom().id("newId").getText());
+console.log(exdom().id("newId").setText("Some text"));
