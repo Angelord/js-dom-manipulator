@@ -1,26 +1,42 @@
 
 var exdom = function(pattern) {
 
-    var patternRef = pattern ? pattern.trim() : "*";
+    return get(pattern);
 
-    if(patternRef == "*") {
-        var all = document.getElementsByTagName("*");
-        return new ExdomElement(all);
-    }
+    function get(pattern) {
+        var patternRef = pattern ? pattern.trim() : "*";
 
+        if(patternRef == "*") {
+            return getAll();
+        }
 
-
-    function ExdomElement(elements) {
-
-        var elementsRef = elements ? elements : [ ];
-    
-        this.setClass = function(name) {
-            CollectionUtil.forEach(elementsRef, function(element) {
-                element.className = name;
-            });
-
-            return this;
+        if(patternRef[0] == "#") {
+            var id = patternRef.substring(1);
+            return getById(id);
         }
     }
+
+    function getAll() {
+        var all = document.getElementsByTagName("*");
+        return new ExdomElement(all);
+    };
+
+    function getById(id) {
+        var elWithId = document.getElementById(id);
+        return new ExdomElement( [elWithId] );
+    } 
 };
+
+function ExdomElement(elements) {
+
+    var elementsRef = elements ? elements : [ ];
+
+    this.setClass = function(name) {
+        CollectionUtil.forEach(elementsRef, function(element) {
+            element.className = name;
+        });
+
+        return this;
+    }
+}
 
