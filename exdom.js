@@ -17,6 +17,14 @@ function ExdomElement(elements) {
         return elementsRef.length != 0;
     }
 
+    this.parent = function() {
+        if(elementsRef.length > 0) {
+            var parent = elementsRef[0].parentNode;
+            return new ExdomElement( [parent] );
+        }
+        return this;
+    }
+
     this.children = function() {
         var allElements = [];
 
@@ -35,6 +43,16 @@ function ExdomElement(elements) {
         return new ExdomElement(filtered);
     }
 
+    this.class = function(className) {
+        if(!className) { return this; }
+
+        var filtered = CollectionUtil.filter(elementsRef, (element) => {
+            return element.className == className;
+        });
+
+        return new ExdomElement(filtered);
+    }
+
     this.tag = function(tagName) {
         if(!tagName) { return this; }
 
@@ -47,14 +65,34 @@ function ExdomElement(elements) {
         return new ExdomElement(filtered);
     }
 
-    this.class = function(className) {
-        if(!className) { return this; }
+    this.setId = function(idName) {
+        var idRef = idName ? idName : "";
 
-        var filtered = CollectionUtil.filter(elementsRef, (element) => {
-            return element.className == className;
+        elementsRef.forEach(element => {
+            element.id = idRef;
         });
 
-        return new ExdomElement(filtered);
+        return this;
+    }
+
+    this.setClass = function(className) {
+        var classRef = className ? className : "";
+
+        elementsRef.forEach(element => {
+            element.className = classRef;
+        });
+        
+        return this;
+    }
+
+    this.setTag = function(tagName) {
+        var tagRef = tagName ? tagName.toUpperCase() : "";
+
+        elementsRef.forEach(element => {
+            element.tagName = tagRef;
+        }); 
+
+        return this;
     }
 
     this.append = function(text) {
@@ -100,36 +138,6 @@ function ExdomElement(elements) {
 
         elementsRef.forEach(element => {
             element.textContent = textRef;
-        });
-
-        return this;
-    }
-
-    this.setId = function(idName) {
-        var idRef = idName ? idName : "";
-
-        elementsRef.forEach(element => {
-            element.id = idRef;
-        });
-
-        return this;
-    }
-
-    this.setClass = function(className) {
-        var classRef = className ? className : "";
-
-        elementsRef.forEach(element => {
-            element.className = classRef;
-        });
-        
-        return this;
-    }
-
-    this.setName = function(name) {
-        var nameRef = name ? name : "";
-
-        elementsRef.forEach(element => {
-            element.name = nameRef;
         });
 
         return this;
