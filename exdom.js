@@ -18,11 +18,24 @@ function ExdomElement(elements) {
     }
 
     this.parent = function() {
-        if(elementsRef.length > 0) {
-            var parent = elementsRef[0].parentNode;
-            return new ExdomElement( [parent] );
-        }
-        return this;
+        if(elementsRef.length == 0) { return this; }  
+
+        var parent = elementsRef[0].parentNode;
+        return new ExdomElement( [parent] );
+    }
+
+    this.prevSibling = function() {
+        if(elementsRef.length == 0) { return this; }
+
+        var prev = elementsRef[0].previousSibling;
+        return new ExdomElement( [prev] );
+    }
+
+    this.nextSibling = function() {
+        if(elementsRef.length == 0) { return this; }
+
+        var next = elementsRef[0].nextSibling;
+        return new ExdomElement( [next] );
     }
 
     this.children = function() {
@@ -33,6 +46,20 @@ function ExdomElement(elements) {
         });
 
         return new ExdomElement(allElements);
+    }
+
+    this.firstChild = function() {
+        if(elementsRef.length == 0) { return this; } 
+
+        var first = elementsRef[0].firstChild;
+        return new ExdomElement( [first] );
+    }
+
+    this.lastChild = function() {
+        if(elementsRef.length == 0) { return this; }
+
+        var last = elementsRef[0].lastChild;
+        return new ExdomElement( [last] );
     }
 
     this.id = function(idName) {
@@ -95,7 +122,27 @@ function ExdomElement(elements) {
         return this;
     }
 
-    this.append = function(text) {
+    this.appendNode = function(tag) {
+        if(!tag || elementsRef.length == 0) { return this; }
+        var tagRef = tag.toUpperCase();
+
+        var newChild = document.createElement(tagRef);
+        var appended = elementsRef[0].appendChild(newChild);
+
+        return new ExdomElement( [appended] );
+    }
+
+    this.prependNode = function(tag) {
+        if(!tag || elementsRef.length == 0) { return this; }
+        var tagRef = tag.toUpperCase();
+
+        var newChild = document.createElement(tagRef);
+        var appended = elementsRef[0].insertBefore(newChild, elementsRef[0].firstChild);
+
+        return new ExdomElement( [appended] );
+    }
+
+    this.appendHtml = function(text) {
         if(!text) { return; }
 
         elementsRef.forEach(element => {
@@ -105,7 +152,7 @@ function ExdomElement(elements) {
         return this;
     }
 
-    this.prepend = function(text) {
+    this.prependHtml = function(text) {
         if(!text) { return; }
 
         elementsRef.forEach(element => {
